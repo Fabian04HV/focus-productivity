@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+:root{
+  --base-color: #F7FAFD;
+  --primary-color: #FFFFFF;
+  --text-color: #283542;
+  --secondary-text-color: #8193a6;
+  --line-color: #d3d7db;
+  --accent-color: #7C62FE;
+}
+*{
+  margin: 0;
+  padding: 0;
+}
+html{
+  font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+body{
+  background-color: var(--base-color);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: grid;
+  place-content: center;
+}
+h1{
+  font-size: 3rem;
+}
+main{
+  width: min(350px, 100%);
+}
+.todo-list{
+  list-style: none;
+}
+.todo-list li{
+  margin-bottom: .75em;
+  padding: 1em;
+  background-color: var(--primary-color);
+  border-left: 5px solid var(--color);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+.todo-list li span:last-child{
+  margin-top: 1em;
+  color: var(--secondary-text-color);
+}
+form{
+  padding: 1em;
+  background-color: var(--primary-color);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+form .footer{
+  margin-top: 2em;
+  display: flex;
+  gap: .5em;
+}
+input[type="text"]{
+  padding: 1em;
+  border: none;
+  border-bottom: 2px solid var(--line-color);
+  font: inherit;
+  caret-color: var(--accent-color);
+}
+input[type="text"]::placeholder{
+  opacity: 1;
+  color: var(--secondary-text-color);
+}
+input[type="text"]:focus{
+  outline: none;
+  border-color: var(--accent-color);
+}
+input[type="time"]{
+  font: inherit;
+  border: 1px solid var(--line-color);
+  border-radius: 4px;
+  color: var(--secondary-text-color);
+}
+input[type="color"]{
+  height: 30px;
+  width: 30px;
+  border: none;
+  border-radius: 50%;
+  margin-right: auto;
+}
+button{
+  padding: .25em .5em;
+  font: inherit;
+  border: none;
+  background-color: var(--line-color);
+  border-radius: 4px;
+  color: var(--text-color);
+  cursor: pointer;
+}
+.accent-button{
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+.add-button{
+  margin: 0 auto;
+  display: block;
+  padding: .5em 1.5em;
+  background-color: var(--primary-color);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  transition: 150ms ease;
+}
+.add-button:hover{
+  background-color: var(--secondary-text-color);
+  color: var(--primary-color);
+}
