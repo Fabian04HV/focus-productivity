@@ -6,10 +6,12 @@ const App = () => {
 
   const [addTask, setAddTask] = useState(false)
   const [tasks, setTasks] = useState([])
-
+  const [taskInput, setTaskInput] = useState('')
   const toggleForm = () => {
     setAddTask(prev => !prev)
   }
+
+  const updateTaskInput = (e) => { setTaskInput(e.target.value)}
 
   const handleAddTask = (e) => {
     e.preventDefault()
@@ -20,6 +22,7 @@ const App = () => {
     }
 
     setTasks(prev => [...prev, newTask])
+    setTaskInput('')
   }
 
   return(
@@ -41,11 +44,11 @@ const App = () => {
         </ul>
         { addTask && 
         <form onSubmit={handleAddTask}>
-          <input type="text" placeholder='Enter Task' name='title'/>
+          <input onChange={updateTaskInput} value={taskInput} type="text" placeholder='Enter Task' name='title'/>
           <br />
           <div className="footer">
             <input type="time" name='deadline'/>
-            <input type="color" name='color'/>
+            <input value="#7C62FE" type="color" name='color'/>
             <button onClick={toggleForm}>Cancel</button>
             <button className='accent-button' type='submit'>Add</button>
           </div>

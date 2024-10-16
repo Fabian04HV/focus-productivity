@@ -22,7 +22,8 @@ body{
   place-content: center;
 }
 h1{
-  font-size: 3rem;
+  font-size: 2rem;
+  text-align: center;
 }
 main{
   width: min(350px, 100%);
@@ -56,9 +57,7 @@ form .footer{
   gap: .5em;
 }
 input[type="text"]{
-  padding: 1em;
   border: none;
-  border-bottom: 2px solid var(--line-color);
   font: inherit;
   caret-color: var(--accent-color);
 }
@@ -87,10 +86,12 @@ button{
   padding: .25em .5em;
   font: inherit;
   border: none;
-  background-color: var(--line-color);
+  background: none;
   border-radius: 4px;
   color: var(--text-color);
   cursor: pointer;
+  border: 1px solid var(--line-color);
+  color: var(--secondary-text-color);
 }
 .accent-button{
   background-color: var(--accent-color);
