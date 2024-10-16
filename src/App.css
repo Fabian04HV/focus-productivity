@@ -6,10 +6,23 @@
   --secondary-text-color: #8193a6;
   --line-color: #d3d7db;
   --accent-color: #7C62FE;
+  --hover-color: #bb80ff;
+  --red-color: #dc2d3b;
+}
+.darkmode{
+  --base-color: #070810;
+  --primary-color: #0F111A;
+  --secondary-color: #1D1E29;
+  --text-color: #FFFFFF;
+  --secondary-text-color: #6C7785;
+  --line-color: #1D1E29;
+  --accent-color: #7C62FE;
+  --hover-color: #B196E0;
 }
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 html{
   font-family: Poppins, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -18,16 +31,64 @@ body{
   background-color: var(--base-color);
   min-height: 100vh;
   min-height: 100dvh;
-  display: grid;
-  place-content: center;
+  color: var(--text-color);
 }
-h1{
-  font-size: 3rem;
+.App{
+  display: grid;
+  grid-template-columns: 14rem 1fr;
+}
+.Sidebar{
+  height: 100vh;
+  border-right: 1px solid var(--primary-color);
+  padding: .5em;
+}
+.Sidebar ul{
+  display: flex;
+  flex-direction: column;
+}
+.Sidebar .logo-li{
+  padding: 1em 0 1em 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+#toggle-sidebar-button{
+  padding: .5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.Sidebar a{
+  padding: 1em;
+  text-decoration: none;
+  color: var(--text-color);
+  display: flex;
+  border-radius: .5em;
+  gap: .75em;
+  transition: 100ms ease;
+}
+.Sidebar a:hover{
+  background-color: var(--secondary-color);
+}
+.Sidebar .active{
+  color: var(--accent-color);
+}
+.Sidebar .active svg{
+  fill: var(--accent-color);
 }
 main{
-  width: min(350px, 100%);
+  padding: min(50px, 8%);
+}
+h1{
+  font-size: 2.25rem;
+}
+/* Todo List Styles */
+.TasksPage{
+  
 }
 .todo-list{
+  margin-top: 1em;
+  width: min(400px, 100%);
   list-style: none;
 }
 .todo-list li{
@@ -39,32 +100,72 @@ main{
   border-radius: 4px;
   display: flex;
   flex-direction: column;
+  transition: 100ms ease-in-out;
+  cursor: pointer;
+  position: relative;
 }
-.todo-list li span:last-child{
+.todo-list .deadline{  
+  display: block;
   margin-top: 1em;
   color: var(--secondary-text-color);
 }
+.todo-list li.completed p{
+  text-decoration: line-through;
+  color: var(--secondary-text-color);
+}
+.delete-button{
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  border: none;
+  padding: .25em;
+  display: grid;
+  place-content: center;
+  opacity: 0;
+  transition: 100ms;
+}
+
+.todo-list li:hover .delete-button{
+  opacity: 1;
+}
+.delete-button svg{
+  height: 1.75em;
+  width: 1.75em;
+  fill: var(--secondary-text-color);
+}
+.delete-button:hover svg{
+  fill: var(--text-color);
+}
 form{
-  padding: 1em;
+  padding: 1.25em;
   background-color: var(--primary-color);
   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
   border-radius: 4px;
 }
+form .header{
+  display: flex;
+  align-items: center;
+  gap: .6em;
+}
 form .footer{
-  margin-top: 2em;
+  margin-top: .75em;
   display: flex;
   gap: .5em;
 }
+input{
+  background: none;
+  color: var(--text-color);
+}
 input[type="text"]{
-  padding: 1em;
   border: none;
-  border-bottom: 2px solid var(--line-color);
   font: inherit;
   caret-color: var(--accent-color);
+  font-size: 1rem;
 }
 input[type="text"]::placeholder{
   opacity: 1;
   color: var(--secondary-text-color);
+  font-weight: 500;
 }
 input[type="text"]:focus{
   outline: none;
@@ -75,29 +176,42 @@ input[type="time"]{
   border: 1px solid var(--line-color);
   border-radius: 4px;
   color: var(--secondary-text-color);
+  margin-right: auto;
+}
+input[type="time"]:focus{
+  outline: 2px solid var(--accent-color);
 }
 input[type="color"]{
-  height: 30px;
-  width: 30px;
+  height: 22px;
+  width: 22px;
   border: none;
   border-radius: 50%;
-  margin-right: auto;
+  flex-shrink: 0;
 }
 button{
   padding: .25em .5em;
   font: inherit;
-  border: none;
-  background-color: var(--line-color);
-  border-radius: 4px;
-  color: var(--text-color);
+  border: 1px solid var(--line-color);
+  background: none;
+  border-radius: 6px;
+  color: var(--secondary-text-color);
   cursor: pointer;
 }
+button:hover{
+  background-color: var(--line-color);
+  color: var(--text-color);
+}
 .accent-button{
+  border-color: var(--accent-color);
   background-color: var(--accent-color);
   color: var(--primary-color);
 }
+.accent-button:hover{
+  border-color: var(--hover-color);
+  background: var(--hover-color);
+  color: var(--primary-color);
+}
 .add-button{
-  margin: 0 auto;
   display: block;
   padding: .5em 1.5em;
   background-color: var(--primary-color);
@@ -108,6 +222,6 @@ button{
   transition: 150ms ease;
 }
 .add-button:hover{
-  background-color: var(--secondary-text-color);
-  color: var(--primary-color);
+  background-color: var(--secondary-color);
+  color: var(--text-color);
 }
