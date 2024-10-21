@@ -1,6 +1,19 @@
 const express = require('express');
-const app = express();
 const cors = require('cors');
+const mongoose = require('mongoose')
+const dotenv = require('dotenv')
+
+const app = express();
+dotenv.config()
+const MONGOURI = process.env.MONGO_URI
+
+mongoose.connect(MONGOURI).then(() => {
+  console.log('Database is connected successfully')
+})
+.catch(error => console.log(error))
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 const taskRoutes = require('./routes/task.routes')
 

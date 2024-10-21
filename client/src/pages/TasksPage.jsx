@@ -40,6 +40,12 @@ const TasksPage = () => {
       deadline: e.target.deadline.value,
       color: e.target.color.value
     }
+    console.log(newTask)
+
+    apiClient.post('/newtask', newTask)
+    .then(response => {
+      console.log(response)
+    })
 
     setTasks(prev => [...prev, newTask])
   }
