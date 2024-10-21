@@ -1,0 +1,16 @@
+.LoginPage{
+  min-height: 100vh;
+  width: 100vw;
+
+  display: grid;
+  place-items: center;
+  place-content: center;
+  text-align: center;
+}
+.LoginPage h1{
+  font-size: 3rem;
+  margin-bottom: .5em;
+}
+.LoginPage form + a{
+  margin-top: 2em;
+}

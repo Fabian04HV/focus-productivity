@@ -7,17 +7,30 @@ import TasksPage from './pages/TasksPage'
 import NotesPage from './pages/NotesPage'
 import FlashcardsPage from './pages/FlashcardsPage'
 import CalendarPage from './pages/CalendarPage'
+import { LoginPage } from './pages/LoginPage'
+import { SignupPage } from './pages/SignupPage'
+import { LandingPage } from './pages/LandingPage'
 
 const App = () => {
+
+  const isLoggedIn = false
+
   return(
     <div className='App'>
-      <Sidebar/>
+      { isLoggedIn && <Sidebar/> }
       <Routes>
-        <Route path='/' element={<DashboardPage/>}/>
+        { isLoggedIn ? 
+          <Route path='/' element={<DashboardPage/>}/>:
+          <>
+            <Route path='/' element={<LandingPage/>}/>
+            <Route path='/login' element={<LoginPage/>}/>
+            <Route path='/signup' element={<SignupPage/>}/>
+          </>
+        }
         <Route path='/tasks' element={<TasksPage/>}/>
         <Route path='/notes' element={<NotesPage />}/>
         <Route path='/calendar' element={<CalendarPage/>}/>
-        <Route path='/flashcards' element={<FlashcardsPage/>}/>
+        <Route path='/flashcards' element={<FlashcardsPage/>}/>        
       </Routes>
     </div>
   )

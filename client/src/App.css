@@ -82,114 +82,8 @@ main{
 h1{
   font-size: 2.25rem;
 }
-/* Todo List Styles */
-.TasksPage{
-  
-}
-.todo-list{
-  margin-top: 1em;
-  width: min(400px, 100%);
-  list-style: none;
-}
-.todo-list li{
-  margin-bottom: .75em;
-  padding: 1em;
-  background-color: var(--primary-color);
-  border-left: 5px solid var(--color);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-  display: flex;
-  flex-direction: column;
-  transition: 100ms ease-in-out;
-  cursor: pointer;
-  position: relative;
-}
-.todo-list .deadline{  
-  display: block;
-  margin-top: 1em;
-  color: var(--secondary-text-color);
-}
-.todo-list li.completed p{
-  text-decoration: line-through;
-  color: var(--secondary-text-color);
-}
-.delete-button{
-  position: absolute;
-  right: 1em;
-  bottom: 1em;
-  border: none;
-  padding: .25em;
-  display: grid;
-  place-content: center;
-  opacity: 0;
-  transition: 100ms;
-}
-
-.todo-list li:hover .delete-button{
-  opacity: 1;
-}
-.delete-button svg{
-  height: 1.75em;
-  width: 1.75em;
-  fill: var(--secondary-text-color);
-}
-.delete-button:hover svg{
-  fill: var(--text-color);
-}
-form{
-  padding: 1.25em;
-  background-color: var(--primary-color);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  border-radius: 4px;
-}
-form .header{
-  display: flex;
-  align-items: center;
-  gap: .6em;
-}
-form .footer{
-  margin-top: .75em;
-  display: flex;
-  gap: .5em;
-}
-input{
-  background: none;
-  color: var(--text-color);
-}
-input[type="text"]{
-  border: none;
-  font: inherit;
-  caret-color: var(--accent-color);
-  font-size: 1rem;
-}
-input[type="text"]::placeholder{
-  opacity: 1;
-  color: var(--secondary-text-color);
-  font-weight: 500;
-}
-input[type="text"]:focus{
-  outline: none;
-  border-color: var(--accent-color);
-}
-input[type="time"]{
-  font: inherit;
-  border: 1px solid var(--line-color);
-  border-radius: 4px;
-  color: var(--secondary-text-color);
-  margin-right: auto;
-}
-input[type="time"]:focus{
-  outline: 2px solid var(--accent-color);
-}
-input[type="color"]{
-  height: 22px;
-  width: 22px;
-  border: none;
-  border-radius: 50%;
-  flex-shrink: 0;
-}
 button{
-  padding: .25em .5em;
+  padding: 1em 2em;
   font: inherit;
   border: 1px solid var(--line-color);
   background: none;
@@ -200,30 +94,55 @@ button{
   color: var(--secondary-text-color);
 }
 button:hover{
-  background-color: var(--line-color);
-  color: var(--text-color);
-}
-.accent-button{
-  border-color: var(--accent-color);
-  background-color: var(--accent-color);
-  color: var(--primary-color);
-}
-.accent-button:hover{
-  border-color: var(--hover-color);
-  background: var(--hover-color);
-  color: var(--primary-color);
-}
-.add-button{
-  display: block;
-  padding: .5em 1.5em;
-  background-color: var(--primary-color);
-  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
-  font-size: 1.2rem;
-  font-weight: 500;
-  color: var(--secondary-text-color);
-  transition: 150ms ease;
-}
-.add-button:hover{
   background-color: var(--secondary-color);
   color: var(--text-color);
+}
+button[disabled]:hover{
+  background-color: var(--base-color);
+  color: var(--secondary-text-color);
+  cursor: not-allowed;
+}
+form{
+  width: min(20em, 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+input{
+  padding: 1em;
+  font: inherit;
+  background-color: var(--primary-color);
+  border: none;
+  border-radius: .25em;
+  color: var(--text-color);
+  caret-color: var(--accent-color);
+  transition: background-color 100ms ease;
+  border: 1px solid var(--secondary-color);
+}
+input:hover{
+  background-color: var(--secondary-color);
+}
+input:focus{
+  outline: none;
+  background-color: var(--secondary-color);
+  border-color: var(--accent-color);
+}
+a{
+  text-decoration: none;
+  color: var(--accent-color);
+}
+a:hover{
+  text-decoration: underline;
+  color: var(--hover-color);
+}
+.accent-button{
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  border-color: var(--accent-color);
+  font-weight: 500;
+  transition: background-color 150ms ease, color 150ms ease;
+}
+.accent-button:hover, .accent-button:focus{
+  background-color: var(--base-color);
+  color: var(--accent-color);
 }

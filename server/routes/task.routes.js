@@ -3,17 +3,15 @@ const Task = require('../models/Task.model');
 const router = express.Router()
 
 router.get('/tasks', (req, res) => {
-  const tasks = [
-    {title: 'Go to the Gym', color: '#0071FF', deadline: '12:00'},
-    {title: 'prepare presentation slides', color: 'red', deadline: '21:00'}
-  ]
-  res.json({ tasks })
+  Task.find()
+  .then(found => {
+    res.json({ tasks: found })
+  })
+  .catch(error => console.log("Error in get /task route: ", error))
 })
 
 router.post('/newtask', (req, res) => {
-  console.log(req)
   const { title, deadline, color } = req.body
-
 
   if(title){
     Task.create({ title, deadline, color })

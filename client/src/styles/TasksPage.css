@@ -1,0 +1,135 @@
+/* Todo List Styles */
+.TasksPage{
+  
+}
+.todo-list{
+  margin-top: 1em;
+  width: min(400px, 100%);
+  list-style: none;
+}
+.todo-list li{
+  margin-bottom: .75em;
+  padding: 1em;
+  background-color: var(--primary-color);
+  border-left: 5px solid var(--color);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  transition: 100ms ease-in-out;
+  cursor: pointer;
+  position: relative;
+}
+.todo-list .deadline{  
+  display: block;
+  margin-top: 1em;
+  color: var(--secondary-text-color);
+}
+.todo-list li.completed p{
+  text-decoration: line-through;
+  color: var(--secondary-text-color);
+}
+.todo-list .delete-button{
+  position: absolute;
+  right: 1em;
+  bottom: 1em;
+  border: none;
+  padding: .25em;
+  display: grid;
+  place-content: center;
+  opacity: 0;
+  transition: 100ms;
+}
+
+.todo-list li:hover .delete-button{
+  opacity: 1;
+}
+.todo-list .delete-button svg{
+  height: 1.75em;
+  width: 1.75em;
+  fill: var(--secondary-text-color);
+}
+.todo-list .delete-button:hover svg{
+  fill: var(--text-color);
+}
+.TasksPage form{
+  padding: 1.25em;
+  background-color: var(--primary-color);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+  display: block;
+}
+.TasksPage form .header{
+  display: flex;
+  align-items: center;
+  gap: .6em;
+}
+.TasksPage form .footer{
+  margin-top: .75em;
+  display: flex;
+  gap: .5em;
+}
+.TasksPage input{
+  padding: 0;
+  background: none;
+  color: var(--text-color);
+}
+.TasksPage input[type="text"]{
+  border: none;
+  font: inherit;
+  caret-color: var(--accent-color);
+  font-size: 1rem;
+}
+.TasksPage button{
+  padding: .3em .75em;
+}
+.TasksPage input[type="text"]::placeholder{
+  opacity: 1;
+  color: var(--secondary-text-color);
+  font-weight: 500;
+}
+.TasksPage input[type="text"]:focus{
+  outline: none;
+  border-color: var(--accent-color);
+}
+.TasksPage input[type="time"]{
+  font: inherit;
+  border: 1px solid var(--line-color);
+  border-radius: 4px;
+  color: var(--secondary-text-color);
+  margin-right: auto;
+}
+.TasksPage input[type="time"]:focus{
+  outline: 2px solid var(--accent-color);
+}
+.TasksPage input[type="color"]{
+  height: 22px;
+  width: 22px;
+  border: none;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.TasksPage .accent-button{
+  border-color: var(--accent-color);
+  background-color: var(--accent-color);
+  color: var(--primary-color);
+}
+.TasksPage .accent-button:hover{
+  border-color: var(--hover-color);
+  background: var(--hover-color);
+  color: var(--primary-color);
+}
+.TasksPage .add-button{
+  display: block;
+  padding: .5em 1.5em;
+  background-color: var(--primary-color);
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.05);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  transition: 150ms ease;
+}
+.TasksPage .add-button:hover{
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}

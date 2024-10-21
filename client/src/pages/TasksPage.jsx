@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import apiClient from '../../api/apiClient'
+import '../styles/TasksPage.css'
 
 const TasksPage = () => {
   const [addTask, setAddTask] = useState(false)
