@@ -14,12 +14,13 @@ mongoose.connect(MONGOURI).then(() => {
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-
-const taskRoutes = require('./routes/task.routes')
-
 app.use(cors({ origin: "http://localhost:5173" }))
 
+const taskRoutes = require('./routes/task.routes')
 app.use('/api', taskRoutes)
+
+const authRoutes = require('./routes/auth.routes')
+app.use('/api', authRoutes)
 
 app.get('/', (req, res) => {
   res.send('Hello World')

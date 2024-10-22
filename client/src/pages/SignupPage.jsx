@@ -1,19 +1,23 @@
 import React, { useEffect, useState } from "react"
 import { Link } from 'react-router-dom'
 import '../styles/LoginPage.css'
+import apiClient from "../../api/apiClient"
 
 export const SignupPage = () => {
 
   const [formData, setFormData] = useState({ firstname: "", email: "", password: "" })
-  const [isFormValid, setIsFormValid] = useState(true)
+  const [isFormValid, setIsFormValid] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
+
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/;
 
   useEffect(() => {
     const isValid = 
       formData.firstname.trim() !== "" &&
       formData.email.trim() !== "" &&
-      formData.password.trim() !== "";
+      passwordRegex.test(formData.password);
     setIsFormValid(isValid)
-  }, [formData])
+  }, [formData, passwordRegex])
 
   const handleInputChange = (e) => {
     const { name, value } = e.target
@@ -21,11 +25,27 @@ export const SignupPage = () => {
       ...formData,
       [name]: value
     })
+
+    setErrorMessage('')
   }
   const handleSignup = (e) => {
     e.preventDefault()
 
-    console.log(formData)
+    if(!isFormValid){
+      setErrorMessage('Please fill in all fields correctly')
+      return;
+    }
+
+    // console.log(formData)
+
+    apiClient.post('/signup', formData)
+    .then(response => {
+      console.log('Signup Response: ', response)
+    })
+    .catch(error => {
+      console.error(error)
+      // TODO: front-end error handling
+    })
   }
 
   return(
