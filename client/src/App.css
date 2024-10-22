@@ -8,6 +8,7 @@
   --accent-color: #7C62FE;
   --hover-color: #bb80ff;
   --red-color: #dc2d3b;
+  --red-transparent: hsla(355, 71%, 52%, 0.125);
 }
 .darkmode{
   --base-color: #070810;
@@ -108,7 +109,7 @@ button:hover{
 button[disabled]:hover{
   background-color: var(--base-color);
   color: var(--secondary-text-color);
-  cursor: not-allowed;
+  /* cursor: not-allowed; */
 }
 form{
   width: min(20em, 100%);
@@ -178,4 +179,12 @@ a:hover{
   border: none;
   padding: 1em;
   border-radius: 0;
+}
+.error{
+  /* background-color: var(--red-transparent);
+  padding: .5em 1em;
+  border-radius: .25em;
+  border: 1px solid var(--red-color); */
+  color: var(--red-color);
+  margin: 0 0 1em 0;
 }

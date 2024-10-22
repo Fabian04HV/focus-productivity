@@ -9,8 +9,33 @@
 }
 .LoginPage h1{
   font-size: 3rem;
-  margin-bottom: .5em;
 }
 .LoginPage form + a{
   margin-top: 2em;
+}
+.LoginPage form{
+  position: relative;
+}
+.LoginPage .show-password-button{
+  position: absolute;
+  height: 2em;
+  width: 2em;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  right: .5em;
+  bottom: 4.5em;
+  translate: 0 -50%;
+  border: none;
+  border-radius: 50%;
+}
+.LoginPage .show-password-button svg{
+  fill: var(--secondary-text-color);
+}
+.LoginPage .show-password-button:hover{
+  background: none;
+}
+.LoginPage .show-password-button:hover svg{
+  fill: var(--text-color);
 }
