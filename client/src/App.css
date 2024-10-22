@@ -13,8 +13,8 @@
   --base-color: #070810;
   --primary-color: #0F111A;
   --secondary-color: #1D1E29;
-  --text-color: #FFFFFF;
-  --secondary-text-color: #6C7785;
+  --text-color: #c5c5c5;
+  --secondary-text-color: #566375;
   --line-color: #1D1E29;
   --accent-color: #7C62FE;
   --hover-color: #B196E0;
@@ -37,10 +37,14 @@ body{
   display: grid;
   grid-template-columns: 14rem 1fr;
 }
+.App:has(.Sidebar.collapsed){
+  grid-template-columns: 3.5em 1fr;
+}
 .Sidebar{
   height: 100vh;
+  width: 14rem;
   border-right: 1px solid var(--primary-color);
-  padding: .5em;
+  padding: .5em;  
 }
 .Sidebar ul{
   display: flex;
@@ -65,13 +69,17 @@ body{
   display: flex;
   border-radius: .5em;
   gap: .75em;
-  transition: 100ms ease;
+  transition: background-color 100ms ease;
 }
 .Sidebar a:hover{
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
+  color: unset;
 }
-.Sidebar .active{
+.Sidebar a.active{
   color: var(--accent-color);
+}
+.Sidebar svg{
+  fill: var(--text-color);
 }
 .Sidebar .active svg{
   fill: var(--accent-color);
@@ -132,7 +140,6 @@ a{
   color: var(--accent-color);
 }
 a:hover{
-  text-decoration: underline;
   color: var(--hover-color);
 }
 .accent-button{
@@ -145,4 +152,30 @@ a:hover{
 .accent-button:hover, .accent-button:focus{
   background-color: var(--base-color);
   color: var(--accent-color);
+}
+.Sidebar svg{
+  flex-shrink: 0;
+}
+.Sidebar.collapsed{
+  width: 3.5em;
+  overflow: hidden;
+  align-items: flex-start;
+  padding: 0;
+}
+.Sidebar.collapsed a{
+  padding-left: 1em;
+  padding-right: 1em;
+  color: transparent;
+  border-radius: 0;
+}
+.Sidebar.collapsed .logo-li img{
+  display: none;
+}
+.Sidebar.collapsed .logo-li{
+  padding: 0;
+}
+.Sidebar.collapsed #toggle-sidebar-button{
+  border: none;
+  padding: 1em;
+  border-radius: 0;
 }

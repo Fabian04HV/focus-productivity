@@ -1,13 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 
 const Sidebar = () => {
+
+  const [isCollapsed, setIsCollapsed] = useState(false)
+
+  const handleMenuToggle = () => {
+    setIsCollapsed(prev => !prev)
+  }
+
   return (
-    <nav className='Sidebar'>
+    <nav className={ isCollapsed ? 'Sidebar collapsed' : 'Sidebar' }>
       <ul>
         <li className='logo-li'>
           <img width={100} src='public\logo\focus-logo-white-transparent-no-padding.png' alt="" />
-          <button id='toggle-sidebar-button'>
+          <button id='toggle-sidebar-button' onClick={handleMenuToggle}>
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M180-269.23q-8.5 0-14.25-5.76T160-289.26q0-8.51 5.75-14.24t14.25-5.73h600q8.5 0 14.25 5.76 5.75 5.75 5.75 14.27 0 8.51-5.75 14.24T780-269.23H180ZM180-460q-8.5 0-14.25-5.76T160-480.03q0-8.51 5.75-14.24T180-500h600q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T780-460H180Zm0-190.77q-8.5 0-14.25-5.76-5.75-5.75-5.75-14.27 0-8.51 5.75-14.24t14.25-5.73h600q8.5 0 14.25 5.76t5.75 14.27q0 8.51-5.75 14.24T780-650.77H180Z"/></svg>
           </button>
         </li>
