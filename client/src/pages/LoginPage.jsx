@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react"
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import '../styles/LoginPage.css'
 import apiClient from "../../api/apiClient"
 import { AuthContext } from "../context/auth.context"
 
 export const LoginPage = () => {
 
-  const { storeToken } = useContext(AuthContext)
+  const { storeToken, authenticateUser } = useContext(AuthContext)
+  const navigate = useNavigate()
 
   const [formData, setFormData] = useState({ email: "", password: "" })
   const [isFormValid, setIsFormValid] = useState(false)
@@ -40,8 +41,9 @@ export const LoginPage = () => {
 
     apiClient.post('/login', formData)
     .then(response => {
-      // TODO: Handle Login      
       storeToken(response.data.token)
+      authenticateUser()
+      navigate('/')
     })
     .catch(error => {
       setErrorMessage(error.response.data.message)

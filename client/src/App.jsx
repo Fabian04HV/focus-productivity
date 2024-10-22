@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import "./App.css"
 import Sidebar from './components/Sidebar'
 import { Route, Routes } from 'react-router-dom'
@@ -10,10 +10,14 @@ import CalendarPage from './pages/CalendarPage'
 import { LoginPage } from './pages/LoginPage'
 import { SignupPage } from './pages/SignupPage'
 import { LandingPage } from './pages/LandingPage'
+import { AuthContext } from './context/auth.context'
 
 const App = () => {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
+
+  const { isLoggedIn } = useContext(AuthContext)
+
 
   return(
     <div className='App'>

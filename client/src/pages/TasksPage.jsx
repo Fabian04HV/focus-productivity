@@ -9,11 +9,11 @@ const TasksPage = () => {
   const [newTask, setNewTask] = useState({ title: '', color: '#7C62FE', deadline: '' })
   const [tasks, setTasks] = useState([])
 
-
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const response = await apiClient.get('/tasks')
+        const token = localStorage.getItem('authToken')
+        const response = await apiClient.get('/tasks', { headers: { Authorization: `Bearer ${token}` }})
         const initialTasks = response.data.tasks
         setTasks(initialTasks)
       } catch (error) {
@@ -41,14 +41,16 @@ const TasksPage = () => {
       deadline: e.target.deadline.value,
       color: e.target.color.value
     }
-    console.log(newTask)
+    
+    const token = localStorage.getItem('authToken')
 
-    apiClient.post('/newtask', newTask)
+    apiClient.post('/newtask', newTask, { headers: { Authorization: `Bearer ${token}` }})
     .then(response => {
       console.log(response)
     })
+    .catch(error => console.error(error))
 
-    setTasks(prev => [...prev, newTask])
+    // setTasks(prev => [...prev, newTask])
   }
 
   const handleDeleteTask = (index) =>{

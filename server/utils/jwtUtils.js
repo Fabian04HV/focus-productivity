@@ -20,7 +20,7 @@ const validateToken = (req, res, next) =>{
         return res.status(403).json({ message: 'Invalid Token' })
       }
       else{
-        req.user = payload 
+        req.user = payload
         next()
       }
     })
@@ -32,5 +32,5 @@ const validateToken = (req, res, next) =>{
 
 module.exports = {
   generateToken,
-  validateToken
+  validateToken,
 }
