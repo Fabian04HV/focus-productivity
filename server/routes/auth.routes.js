@@ -2,6 +2,7 @@ const express = require('express')
 const bcrypt = require('bcrypt')
 const validator = require('validator')
 const User = require('../models/User.model')
+const { generateToken } = require('../utils/jwtUtils')
 const router = express.Router()
 
 
@@ -48,6 +49,36 @@ router.post('/signup', async (req, res) => {
   catch (error) {
     console.error(error)
     res.status(500).json({ message: "Server Error"})
+  }
+})
+
+router.post('/login', async (req, res) => {
+
+  const { email, password } = req.body
+
+  try {
+    const foundUser = await User.findOne({ email })
+
+    if(!foundUser){
+      return res.status(400).json({ message: 'User not found' })
+    }
+    
+    const isMatch = await bcrypt.compare(password, foundUser.password)
+
+    if(!isMatch){
+      return res.status(400).json({ message: "Invalid Credentials" })
+    }
+
+    // If password matches, proceed to login
+    // TODO: Improve Token Payload with deconstructed user data
+    const { _id, firstname, tasks, notes, flashcardSets } = foundUser
+    const payload = { _id, firstname, tasks, notes, flashcardSets }
+    const token = generateToken(payload)
+    res.status(200).json({ message: "Login successful", token })
+
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({ message: "Server Error", error })    
   }
 })
 

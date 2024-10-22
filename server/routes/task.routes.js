@@ -1,8 +1,9 @@
 const express = require('express');
 const Task = require('../models/Task.model');
 const router = express.Router()
+const { validateToken } = require('../utils/jwtUtils')
 
-router.get('/tasks', (req, res) => {
+router.get('/tasks', validateToken, (req, res) => {
   Task.find()
   .then(found => {
     res.json({ tasks: found })
