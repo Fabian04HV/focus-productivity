@@ -12,8 +12,7 @@ const TasksPage = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const token = localStorage.getItem('authToken')
-        const response = await apiClient.get('/tasks', { headers: { Authorization: `Bearer ${token}` }})
+        const response = await apiClient.get('/tasks')
         const initialTasks = response.data.tasks
         setTasks(initialTasks)
       } catch (error) {
@@ -65,8 +64,7 @@ const TasksPage = () => {
       <section>
         <ul className='todo-list'>
           { 
-          tasks ?
-            tasks.map((task, index) => (
+            tasks?.map((task, index) => (
               <li key={"task-" + index} style={{"--color": task.color}}>
                 <p>{task.title}</p>
                 <p>
@@ -77,10 +75,6 @@ const TasksPage = () => {
                 </p>
               </li>
             ))
-          :
-            <>
-              <p>Loading...</p>
-            </>
           }
           {!addTask && <button className='add-button' onClick={toggleForm}>+</button>}
           { addTask && 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import apiClient from '../../api/apiClient'
 
 const AuthContext = React.createContext()
@@ -15,7 +15,7 @@ function AuthProviderWrapper(props){
 
   const authenticateUser = () =>{
     const storedToken = localStorage.getItem('authToken')
-
+    console.log('authenticate storedToken: ', storedToken)
     if(storedToken){
       apiClient.get('/user', { headers: { Authorization: `Bearer ${storedToken}` }})
       .then(response => {
@@ -40,6 +40,10 @@ function AuthProviderWrapper(props){
       setUser(null)
     }
   }
+
+  useEffect(() => {
+    authenticateUser()
+  })
 
   return (
     <AuthContext.Provider value={{ isLoggedIn, isLoading, user, storeToken, authenticateUser }}>
